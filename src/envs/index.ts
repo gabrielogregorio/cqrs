@@ -2,7 +2,9 @@ const dotenv = require('dotenv');
 
 dotenv.config({ path: './.env.example' });
 
-export const env = {
+export const Envs = {
+  APPLICATION_PORT: Number(process.env.APPLICATION_PORT.trim().toString()),
+
   WRITE_DB_USERNAME: process.env.WRITE_DB_USERNAME.trim().toString(),
   WRITE_DB_PASSWORD: process.env.WRITE_DB_PASSWORD.trim().toString(),
   WRITE_DB_DATABASE: process.env.WRITE_DB_DATABASE.trim().toString(),

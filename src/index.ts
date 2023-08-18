@@ -10,7 +10,8 @@ import { validateSchema } from './middlewares/validateSchema';
 import { userSchema } from './schemas/user';
 import { UserEvents } from './entity/userEvents.entity';
 import { UserListService } from './query/usersList';
-import { env } from './envs';
+import { Envs } from './envs';
+import { HttpCode } from './code/index';
 
 dataSource
   .initialize()
@@ -22,7 +23,6 @@ dataSource
   });
 
 const app = express();
-const PORT = 3000;
 
 app.use(express.json());
 app.use(cors());
@@ -30,7 +30,7 @@ app.use(cors());
 mongoose.set('strictQuery', false);
 
 mongoose
-  .connect(env.READ_DB_URL_CONNECT, {})
+  .connect(Envs.READ_DB_URL_CONNECT, {})
   .then(() => {
     console.log('mongo ok ✅');
   })
@@ -43,19 +43,19 @@ app.post('/user', validateSchema(userSchema), async (req: Request, res: Response
 
   createUserCommand(user)
     .then(() => {
-      res.status(201).send('User created');
+      res.status(HttpCode.CREATED).send('User created');
       userCreatedEvent(user);
     })
     .catch((error: unknown) => {
       if (error instanceof EmailAlreadyExists) {
-        res.status(409).send({
+        res.status(HttpCode.CONFLICT).send({
           error: 'Conflict',
           message: 'The email address is already registered.',
         });
         return;
       }
       console.log(error);
-      res.status(500).send('Failed to create user');
+      res.status(HttpCode.INTERNAL_ERROR).send('Failed to create user');
     });
 });
 
@@ -81,9 +81,9 @@ app.get('/sync', async (req, res) => {
 app.get('/users', async (req: Request, res: Response) => {
   const users = await getUserQuery();
 
-  res.status(200).json(users);
+  res.status(HttpCode.SUCCESS).json(users);
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+app.listen(Envs.APPLICATION_PORT, () => {
+  console.log(`Server is running on port ${Envs.APPLICATION_PORT}`);
 });
