@@ -1,10 +1,5 @@
 import mongoose from 'mongoose';
-
-export interface IUserListModel {
-  name: string;
-  email: string;
-  id: string;
-}
+import { IUserListModel } from '@/domain/user/userList';
 
 const userSchema = new mongoose.Schema<IUserListModel>(
   {
@@ -17,4 +12,4 @@ const userSchema = new mongoose.Schema<IUserListModel>(
   },
 );
 
-export const UserListModel = mongoose.model<IUserListModel>('User', userSchema);
+export const UserReadModel = mongoose.model<IUserListModel>('User', userSchema);

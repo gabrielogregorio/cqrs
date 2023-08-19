@@ -13,7 +13,7 @@ d: start-setup
 b: start-setup
 	@yarn
 	@docker compose -f ./docker-compose.yml down --remove-orphans --volumes
-	@docker compose -f ./docker-compose.yml up --build -d --force-recreate
+	@docker compose -f ./docker-compose.yml up --build --force-recreate -d
 	@make migrate
 
 s:
@@ -28,15 +28,14 @@ l:
 la:
 	@docker compose -f ./docker-compose.yml logs -f api_cqrs
 
-#migrate:
-#	@docker compose -f ./docker-compose.yml run -it api_cqrs yarn migration:run
+lint:
+	@docker compose -f ./docker-compose.yml run -it api_cqrs yarn lint
 
 migrate:
 	@docker compose -f ./docker-compose.yml run -T api_cqrs yarn migration:run
 
 revert:
 	@docker compose -f ./docker-compose.yml run -T api_cqrs yarn migration:revert
-
 
 start-setup:
 	@if [ ! -f .env ]; then cp .env.example .env; fi

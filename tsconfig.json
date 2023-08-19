@@ -16,18 +16,13 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
-      "@/code/*": ["./src/code/*"],
-      "@/commands/*": ["./src/commands/*"],
-      "@/entity/*": ["./src/entity/*"],
-      "@/envs/*": ["./src/envs/*"],
-      "@/errors/*": ["./src/errors/*"],
-      "@/events/*": ["./src/events/*"],
-      "@/middlewares/*": ["./src/middlewares/*"],
-      "@/migrations/*": ["./src/migrations/*"],
-      "@/models/*": ["./src/models/*"],
-      "@/queries/*": ["./src/queries/*"],
-      "@/query/*": ["./src/query/*"],
-      "@/schemas/*": ["./src/schemas/*"]
+      "@/application/*": ["./src/application/*"],
+      "@/config/*": ["./src/config/*"],
+      "@/domain/*": ["./src/domain/*"],
+      "@/infrastructure/*": ["./src/infrastructure/*"],
+      "@/shared/*": ["./src/shared/*"],
+      "@/interfaces/*": ["./src/interfaces/*"],
+      "@/utils/*": ["./src/utils/*"],
     }
   },
   "include": ["src/**/*", "src/**.ts"]

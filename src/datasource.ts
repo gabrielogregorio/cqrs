@@ -1,6 +1,6 @@
 import { DataSource } from 'typeorm';
-import { UserEvents } from './entity/userEvents.entity';
-import { Envs } from './envs';
+import { UserEvents } from './domain/entity/userEvents';
+import { Envs } from './config/environment.ts';
 
 const myDataSource = new DataSource({
   name: 'default',
@@ -11,7 +11,7 @@ const myDataSource = new DataSource({
   password: Envs.WRITE_DB_PASSWORD,
   database: Envs.WRITE_DB_DATABASE,
   entities: [UserEvents],
-  migrations: ['./src/migrations/*.ts'],
+  migrations: ['./src/infrastructure/database/postgres/migrations/*.ts'],
   migrationsTableName: 'custom_migration_table',
 });
 
