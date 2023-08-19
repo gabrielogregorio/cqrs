@@ -3,20 +3,20 @@ import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 @Entity()
 export class UserEvents {
   @PrimaryGeneratedColumn('uuid')
-  EventId: string;
+  eventId: string;
 
   @Column()
-  EventType: string;
+  eventType: string;
 
   @Column()
-  UserId: string;
+  userId: string;
 
   @Column()
-  Payload: string;
+  payload: string;
 
   @Column()
-  Synchronized: boolean;
+  synchronized: boolean;
 
   @Column()
-  Timestamp: Date;
+  timestamp: Date;
 }

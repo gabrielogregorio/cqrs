@@ -1,7 +1,8 @@
 version: '3'
 
 services:
-  api:
+  api_cqrs:
+    container_name: api_cqrs
     env_file: .env.example
     build: .
     ports:
@@ -9,12 +10,17 @@ services:
     volumes:
       - ./:/usr/src/app/
     depends_on:
-      - write_bd
+      - write_db
       - read_db
 
-  write_bd:
-    container_name: write_bd
+  write_db:
+    container_name: write_db
     env_file: .env.example
+    environment:
+      - POSTGRES_USER=${WRITE_DB_USERNAME}
+      - POSTGRES_PASSWORD=${WRITE_DB_PASSWORD}
+      - POSTGRES_DB=${WRITE_DB_DATABASE}
+      - POSTGRES_USER_HOSTNAME=${WRITE_DB_HOSTNAME}
     build:
       context: ./database
       dockerfile: Dockerfile
@@ -22,13 +28,13 @@ services:
     volumes:
       - pg_data:/var/lib/postgresql/data
     ports:
-      - '5432:5432'
+      - '5420:5432'
 
   read_db:
     container_name: read_db
     image: mongo:latest
     ports:
-      - '27017:27017'
+      - '27020:27017'
     volumes:
       - mongo_data:/data/db
 

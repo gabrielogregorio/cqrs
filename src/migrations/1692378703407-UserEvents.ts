@@ -6,40 +6,37 @@ export class UserEvents1692378703407 implements MigrationInterface {
       name: 'user_events',
       columns: [
         {
-          name: 'EventId',
+          name: 'eventId',
           type: 'uuid',
           isGenerated: true,
           isPrimary: true,
           default: 'uuid_generate_v4()',
         },
         {
-          name: 'EventType',
+          name: 'eventType',
           type: 'varchar',
         },
         {
-          name: 'UserId',
+          name: 'userId',
           type: 'varchar',
         },
         {
-          name: 'Payload',
+          name: 'payload',
           type: 'varchar',
         },
         {
-          name: 'Synchronized',
+          name: 'synchronized',
           type: 'boolean',
         },
         {
-          name: 'Timestamp',
+          name: 'timestamp',
           type: 'timestamp',
           default: 'CURRENT_TIMESTAMP',
         },
       ],
     });
-    
-    queryRunner.createTable(
-      table,
-      true,
-    );
+
+    queryRunner.createTable(table, true);
 
     return table;
   }

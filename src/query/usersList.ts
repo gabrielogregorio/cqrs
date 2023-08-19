@@ -8,11 +8,7 @@ export class UserListService {
   }
 
   static async FindAll(): Promise<IUserListModel[]> {
-    const posts = await UserListModel.find({}, null, {
-      sort: {
-        updatedAt: -1,
-      },
-    }).populate('user');
+    const posts = await UserListModel.find();
 
     return posts;
   }

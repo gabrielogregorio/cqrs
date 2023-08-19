@@ -6,7 +6,7 @@ const myDataSource = new DataSource({
   name: 'default',
   type: 'postgres',
   host: Envs.WRITE_DB_HOSTNAME,
-  port: Envs.WRITE_DB_PORT,
+  port: 5432,
   username: Envs.WRITE_DB_USERNAME,
   password: Envs.WRITE_DB_PASSWORD,
   database: Envs.WRITE_DB_DATABASE,
