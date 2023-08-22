@@ -1,4 +1,4 @@
-export interface IUserListModel {
+export interface IOrderListModel {
   name: string;
   email: string;
   id: string;

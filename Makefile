@@ -22,6 +22,9 @@ s:
 bash:
 	@docker exec -it api_cqrs /bin/bash
 
+bash-mongo:
+	@docker exec -it read_db /bin/bash
+
 l:
 	@docker compose -f ./docker-compose.yml logs -f
 

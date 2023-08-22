@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
-export class UserEvents {
+export class OrderEvents {
   @PrimaryGeneratedColumn('uuid')
   eventId: string;
 
@@ -9,7 +9,7 @@ export class UserEvents {
   eventType: string;
 
   @Column()
-  userId: string;
+  orderId: string;
 
   @Column()
   payload: string;

@@ -1,9 +1,9 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class UserEvents1692378703407 implements MigrationInterface {
+export class OrderEvents1692378703407 implements MigrationInterface {
   public async up(queryRunner: QueryRunner) {
     const table = new Table({
-      name: 'user_events',
+      name: 'order_events',
       columns: [
         {
           name: 'eventId',
@@ -17,7 +17,7 @@ export class UserEvents1692378703407 implements MigrationInterface {
           type: 'varchar',
         },
         {
-          name: 'userId',
+          name: 'orderId',
           type: 'varchar',
         },
         {
@@ -42,6 +42,6 @@ export class UserEvents1692378703407 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('user_events');
+    await queryRunner.dropTable('order_events');
   }
 }
